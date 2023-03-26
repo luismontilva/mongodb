@@ -1,0 +1,5 @@
+use ("sample_training") //De esta manera me conecto a la base de datos "sample training"
+
+db.zips.find({ state: "NY" }).count() //db se refiere a la base de datos, luego ira la coleccion "zips" y luego un find para que encuentre los elementos que tenga el atributo y palabara clave NY. El .count() va a contar cuantos documentos cumplen con ese query.
+
+
