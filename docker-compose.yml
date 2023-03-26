@@ -1,0 +1,14 @@
+version: "3.9" ##Debo colocar la version de la documentacion de este formato yml
+
+services: ##Los servicios es donde corremos una API, BD, cola de tareas, son esos servicios. En este caso es que levante una BD en Mongo.
+  mongodb: #Puede colcoarse el nombre que quiera. Normlamente se coloca el nombre de la BD
+    image: mongo:5.0 #Se refiere al software o version del servicio que quiero traer. Debe estar disponible en el docker hub. 
+    ports:  #Es como nos comunicaremos con la BD
+      - 27017:27017 #Esto debe ser asi siempre, es el puerto por el que mongo recibe su comunicacion.
+    environment: #variables de ambiente
+      - MONGO_INITDB_ROOT_USERNAME=luism #Como la BD no correra desde nuestra maquina, hay que dar un acceso (user y password).
+      - MONGO_INITDB_ROOT_PASSWORD=luis123
+    volumes: #Es donde solicitare a docker para que guarde estados (las consultas que haga)
+      - mongodata:/data/db #cualquier cosa que pase en data/db, guardala en mongodata
+volumes:
+  mongodata:
