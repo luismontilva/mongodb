@@ -1,0 +1,5 @@
+use ("platzi_store") //De esta manera me conecto a la base de datos "platzi_store"
+
+db.products.find() //Por defecto esto me traera todos los productos o documentos de la coleccion products
+
+//Esta query me trae todos los productos o documentos existentes en "products"
