@@ -1,0 +1,16 @@
+use('platzi_store') //Si la BD no estaba creada, el la creara.
+
+//Tambien, si alguna coleccion no habia creada y pongo esto, el la creara automaticamente
+
+db.products.insertOne({
+    _id: 1,
+    name: 'Product 1',
+    price: 100
+})
+db.products.insertOne({
+    _id: 2,
+    name: 'Product 2',
+    price: 1000
+}) //Esto permitira insertar un documento. Le diremos las instrucciones o informacion de ese documento.
+
+//Al correr este query, se va a quedar o me va a mostrar el output de la ultima instruccion (Product2).
