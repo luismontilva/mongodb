@@ -1,0 +1,5 @@
+// voy a correr esto en un query aparte para asegurarnos de que la coleccion este o no vacia.
+
+use('platzi_store')
+
+db.products.find()

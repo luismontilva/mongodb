@@ -11,6 +11,8 @@ db.products.insertOne({
     _id: 2,
     name: 'Product 2',
     price: 1000
-}) //Esto permitira insertar un documento. Le diremos las instrucciones o informacion de ese documento.
+}) //Esto permitira insertar un documento. Le diremos las instrucciones o informacion de ese documento. 
 
 //Al correr este query, se va a quedar o me va a mostrar el output de la ultima instruccion (Product2).
+
+//Si los productos no tuvieran id, cada vez que yo corra este codigo se van a crear esos productos repetidas veces. Pero como tienen id, me dara un error de que no puede ya que el id se repetiria.

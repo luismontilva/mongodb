@@ -1,0 +1,5 @@
+// Ya que yo ya cree en insert.mongodb los productos, ahora puedo consultarlos
+
+use('platzi_store')
+
+db.products.find()

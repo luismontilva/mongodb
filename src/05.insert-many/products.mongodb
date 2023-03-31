@@ -1,0 +1,34 @@
+use('platzi_store')
+
+db.products.drop() //drop, toma la coleccion y la vacia (borra los documentos). Por tanto antes de insertar me aseguro que la coleccion este vacia
+
+db.products.insertMany([
+    {
+        _id: 1,
+        name: 'product 1',
+        price: 123
+    },
+    {
+        _id: 2,
+        name: 'product 2',
+        price: 20
+    },
+    {
+        _id: 1,
+        name: 'product 3',
+        price: 105
+    },
+    {
+        _id: 4,
+        name: 'product 4',
+        price: 120
+    }
+], {
+    ordered: false // esto permitira que al hacer inserciones, en caso de haber un duplicado, se lo salte y siga insertando los siguientes.
+}) // Los elementos se insertarian en una especie de array, separando cada documento por coma
+
+db.products.find() //la ultima instruccion seria que me retorne la  coleccion y sus documentos
+
+//Si alguno o algunos de los documentos tuvieran un id repetido, va a crear el primero que este (de los repetidos), lo que venga despues de este lo insertara, y al llegar al segundo repetido lo obviara, y asi como tambien lo que venga despues de este.. Para este caso, el producto 3 y 4 no se insertarian. Al haber una falla no crea mas productos.
+
+//La manera de dejar por fuera aquellos documentos con duplicidad, es agregando despues del array un “ordered: false” el cual se saltara los errores y seguira insertando los elementos siguientes.
