@@ -1,0 +1,13 @@
+// para poder actualizar un documento
+
+use('platzi_store')
+
+db.products.updateOne(
+    //query
+    {_id: ObjectId('64263462f8e23f974f94f7be')}, //para poder actualizar o modificar un documento cuyo id fue creado por mongo, debo usar la funcion ObjectId, para que lo pueda encontrar
+    { 
+        $inc: {
+            price: 100,
+        } //con este operador digo que atributos quiero incrementar y en cuanto
+    }
+) 

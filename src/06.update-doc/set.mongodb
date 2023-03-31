@@ -1,0 +1,18 @@
+//En este query voy a ver como actualizar los elementos con SET.
+
+use('platzi_store')
+
+db.products.updateOne(
+    //query
+    {_id: 2},
+    //cambio o actualizacion => operators. Se deben incluir operators u operadores
+    { 
+        $set: {
+            name: 'Change name',
+            price: 3000,
+            tags: ['A', 'B', 'C'] //puedo incluso agregar un atributo que no estuviera creado de antes
+        } //con este operador digo que atributos quiero cambiar
+    }
+) // Este cambio aplicara para el que tenga el query "_id: 2", y devolvera un detalle del cambio realizado
+    
+//Como primer parametro se pasaria una consulta con la cual podamos encontrar ese documento (preferiblemente el _id). Luego iria la actualizacion o modificacion del valor de la llave que quiero cambiar en ese documento.
