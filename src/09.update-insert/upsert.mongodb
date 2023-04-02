@@ -1,0 +1,14 @@
+//Voy a correr todo con el metodo updateOne, intentando actualizar algo que no esta insertado todavia.
+
+use('platzi_store')
+
+db.iot.updateOne({
+    sensor: 'A001',
+    date: '2022-01-04'
+}, {
+    $push: {
+        readings: 12345 //agregare un elemento (lectura) al array
+    }
+}, {
+    upsert: true 
+}) //El va a identificar que si no existe el elemento todavia, lo va a crear con esos datos datos, gracias al UPSERT. Y si ya esta creado, el va a actualizar ese elemento.

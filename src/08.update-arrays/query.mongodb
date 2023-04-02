@@ -1,0 +1,5 @@
+//Solo hara un query, hacia los documentos que tengamos en la bd
+
+use('platzi_store')
+
+db.inventory.find()

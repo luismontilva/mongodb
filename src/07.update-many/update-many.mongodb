@@ -1,0 +1,40 @@
+// Se aumentara en 1.000 la pop (poblacion) de todos los elementos que cumplan con la condicion city: CLEVELAND
+
+use('sample_training')
+
+db.zips.find({ city: 'CLEVELAND' }) //34 documentos.
+
+db.zips.updateMany(
+    //query
+    { city: 'CLEVELAND' },
+    //update INC -operators
+    // {
+    //     $inc: {
+    //         pop: 1000 //Incrementare en 1.000 la poblacion de todos los documentos que cumplan con la condicion
+    //     }
+    // }
+    // update SET -operators
+    // {
+    //     $set: {
+    //         myAttr: 'hola'
+    //     }
+    // }
+    // update Rename - operators
+    // {
+    //     $rename: {
+    //         myAttr: "my_attribute"
+    //     }
+    // }
+    //Update UNSET - operators
+    {
+        $unset: {
+            my_attribute: ''
+        }
+    }
+)
+
+//INC. Esto agregara 1.000 a el atributo de poblacion, para caaada elemento o documento
+//SET. agregara un atributo nuevo a los documentos que cumplan con la condicion.
+//RENAME. permite cambiarle el nombre a un traibuto, sin cambiar su valor.
+//UNSET. Permite eliminar un atributo, con solo nombrarlo y dejar en blanco el valor, se eliminaria el atributo.
+//Existen otros operadores, los cuales se especificaran en el archivo word.

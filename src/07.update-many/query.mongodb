@@ -1,0 +1,5 @@
+//Este query permitira ver sin tener que hacer modificaciones
+
+use('sample_training')
+
+db.zips.find({ city: 'CLEVELAND'})

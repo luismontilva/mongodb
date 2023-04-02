@@ -1,0 +1,32 @@
+//Pull. permite quitar elementos de un array
+
+use('platzi_store')
+
+//Remove 1 element
+
+// db.inventory.updateMany(
+//     //Para poder seleccionar todos los documentos, puedo dejar el json en vacio (no habria query).
+//     {},
+//     //update Pull
+//     {
+//         $pull: {
+//             tags: 'book'
+//         } //push permite quitar elementos de los arrays
+//     }
+// ) //Esta seria una actualizacion para todos los elementos, quitando el elemento book en tags (array) para los documentos que lo tengan
+
+//En este caso hara find (o match) con 5 elementos, ya que le pedi que buscara en todos. Pero me dira que solo modifico 3 (que son los que tenian book en tags.)
+
+//Remove varios elements
+
+db.inventory.updateMany(
+    //Para poder seleccionar todos los documentos, puedo dejar el json en vacio (no habria query).
+    {},
+    //update Pull
+    {
+        $pull: {
+            tags: {
+                $in: ['appliance', 'school']
+        } //In permite seleccionar varios elementos en un array. Es de utilidad por si quiero eliminar varios elementos de un array
+    }
+}) //Esta seria una actualizacion para todos los elementos, quitando los elemento appliance y school en tags (array) para los documentos que lo tengan

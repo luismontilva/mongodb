@@ -1,0 +1,36 @@
+//INSERT. Aqui se insertara un nuevo elemento a la coleccion iot
+
+use("platzi_store")
+
+// db.iot.insertOne({
+//     sensor: 'A001',
+//     date: '2022-01-03',
+//     readings: [1212]
+// }) //Con esto creo un nuevo elemento a la coleccion, para el dia 03. siendo la primera lectura del dia
+
+//INSERT debe usarse al momento en que se va a crear un nuevo elemento. Para este caso por ser la primera lectura del dia.
+
+//UPDATE. Si hay una nueva lectura en el dia, deberia de usarse update.
+
+db.iot.updateOne({
+    sensor: 'A001',
+    date: '2022-01-03'
+}, {
+    $push: {
+        readings: 2323 //agregare un elemento (lectura) al array
+    }
+}) //Con esto actualizo la lectura de un elemento de la coleccion, para el dia 03. siendo la segunda en el dia.
+
+//UPDATE debe usarse al momento en que se va a actualizar un elemento ya creado. Para este caso por ser la segunda lectura del dia
+
+
+//ADICIONAL. si quiero eliminar un elemento de un array, puedo usar $pop
+
+// db.iot.updateOne({
+//     sensor: 'A001',
+//     date: '2022-01-03'
+// }, {
+//     $pop: {
+//         readings: 1 //el 1 permite eliminar el ultimo elemento de un array. -1 dejaria eliminar el primero
+//     }
+// })

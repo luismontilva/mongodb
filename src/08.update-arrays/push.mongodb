@@ -1,0 +1,30 @@
+//Push. permite agregar elementos a un array
+
+use('platzi_store')
+
+//agregar un elemento
+
+// db.inventory.updateOne(
+//     //query para selecionar un documento
+//     {_id: 4},
+//     //update Push
+//     {
+//         $push: {
+//             tags: 'headphone'
+//         } //push permite agregar un valor a un atributo de tipo array
+//     }
+// ) //Esta seria una actualizacion para un documento en espeficico, agregando un elemento al atributo tags (array) del id 4.
+
+//agregar varios elements
+
+db.inventory.updateMany(
+    //Para poder seleccionar todos los documentos, puedo dejar el json en vacio (no habria query).
+    {},
+    //update Push
+    {
+        $push: {
+            tags: {
+                $each: ['appliance', 'school']
+        } //each permite agregar a cada uno de los documentos, elementos a el array especificado. Es de utilidad por si quiero agregar varios elementos a un array de un documento (One) o a varios (Many)
+    }
+}) //Esta seria una actualizacion para todos los elementos, agregando los elemento appliance y school en tags (array) para todos

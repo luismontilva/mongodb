@@ -1,0 +1,5 @@
+//Aqui podre hacer consultas rapidas.
+
+use("platzi_store")
+
+db.iot.find()
