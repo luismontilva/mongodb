@@ -1,0 +1,5 @@
+//consultar la BD
+
+use("platzi_store")
+
+db.inventory.find()

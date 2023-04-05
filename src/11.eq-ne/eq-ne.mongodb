@@ -1,0 +1,20 @@
+// eq (equal) & ne (not equal)
+
+use('platzi_store')
+
+//Using $eq. Se puede usar de manera implicita o explicita
+
+//implicita
+// db.inventory.find({ qty: 20 })
+//explicita
+// db.inventory.find({ qty: { $eq: 20 } }) //Para que busque los elementos cuya cantidad sean iguales a 20
+
+//Para poder buscar en un subdocumento
+// db.inventory.find({ "item.code": '123' }) //primero se menciona el atributo y luego el subatributo (todo en comillas dobles)
+// db.inventory.find( { "item.code": { $eq: '123' } } ) //forma explicita
+
+//Using $ne. Se puede usar solo de forma explicita. Que busque los elementos que nosean igual a ese elemento.
+
+db.inventory.find({ qty: { $ne: 20 } }) //Que traiga todos los elementos cuya cantidad no sea igual a 20.
+
+//este tipo de opeeradores son de query, por lo que podramos usarlos para un update

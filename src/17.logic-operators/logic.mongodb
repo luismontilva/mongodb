@@ -1,0 +1,40 @@
+use('sample_training')
+
+//and de forma IMPLICITA. Cada vez que coloco dos o mas condiciones para hacer una busqueda, hay un "and" implicito, al separar por coma.
+// db.inspections.find({
+//     sector: 'Tax Preparers - 891',
+//     result: 'Unable to Locate'
+// }).count()
+
+//OPERADOR $and de forma EXPLICITA. Traera los elementos que cumplan con todas las condiciones especificadas.
+// $and [{}, {}, {}] Se colocan las condiciones en forma de objeto en un array.
+// db.inspections.find({
+//     $and: [
+//         {sector: 'Tax Preparers - 891'}, {result: 'Unable to Locate'}
+//     ]
+// }).count()
+
+//OPERADOR $or. Traera los elementos que cumplan con al menos una de las condiciones especificadas.
+// $or [{}, {}, {}] 
+// db.inspections.find({
+//     $or: [
+//         {sector: 'Tax Preparers - 891'}, {result: 'Unable to Locate'}
+//     ]
+// }).count()
+
+//OPERADOR $nor. Traera todo lo que no abarca las condiciones que yo especifico.
+// $nor [{}, {}, {}] 
+// db.inspections.find({
+//     $nor: [
+//         {sector: 'Tax Preparers - 891'}, {result: 'Unable to Locate'}
+//     ]
+// }, {
+//     result: 1,
+//     _id: 0
+// }) //Para este caso no traera nada que tenga esas condiciones, y ademas le pedire que me muestre solamente el resultado y el id no.
+
+//OPERADOR $not. Traera todo, menos lo que niegue en el atributo.
+// $not = {} . Se aplica directamente a un atributo, usandola negacion
+db.inspections.find({
+    result: { $not: { $regex: /Unable to Locate/ }} // de result, no quiero que traiga aquellos resultados que tengan el texto "Unable to Locate"
+})

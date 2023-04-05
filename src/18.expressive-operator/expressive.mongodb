@@ -1,0 +1,18 @@
+use("platzi_store")
+
+// db.monthlyBudget.find({ spent: { $gte: 100 } }) //saber aquellos gastos mayores a 100
+
+
+//OPERADOR $expr
+// db.monthlyBudget.find({
+//     $expr: {
+//         $gte: ['$spent', 100]
+//     } // puedo aplicar el mayor o igual a 100, pero aqui voy a especificar el campo donde voy a comparar (spent), y el valor con el que quiero comparar. Voy a usar un operador de forma expresiva, y voy a aplicar un condicional (gte), donde usare la variable (spent).
+// })
+
+//Si yo quisiera saber los documentos donde el spent supero al budget, puedo hacerlo asi:
+db.monthlyBudget.find({
+    $expr: {
+        $gte: ['$spent', '$budget']
+    }
+}) //Por tanto, el $expr me permite trabajar los atributos como variables.

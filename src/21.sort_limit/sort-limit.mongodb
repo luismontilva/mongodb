@@ -1,0 +1,14 @@
+use('sample_training')
+
+//Sort() y limit(). En sort debo definir por cual atributo quiero ordenar, y en limit() cuantos documentos quiero que muestre
+db.zips
+.find({ pop: { $gte: 100 } })
+.sort({ pop: -1 }) //Debo definir por cual atributo quiero ordenar y en que orden (1 o -1). En este cacso de mayor a menor
+.limit(2) //Debo definir cuantos elementos quiero que traiga
+
+//Para el caso anterior se definio un orden de mayor a menor en relacion a la densidad poblacional, y se pidio que se mostraran solo los 2 primeros elementos
+
+// En sort se debe definir el orden de la siguietne manera:
+// 1 -> Se ordenara de menor a mayor o de A-Z.
+// -1 -> Se ordenara de mayor a menor o de Z-A.
+

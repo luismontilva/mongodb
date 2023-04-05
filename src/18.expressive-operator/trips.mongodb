@@ -1,0 +1,11 @@
+use('sample_training')
+
+db.trips.find({
+    $and:[
+        {$expr: { 
+            $eq: ['$start station id', '$end station id']
+        }}, {tripduration: { $gte: 1200 }}
+    ] 
+}).count() //aqui se comparara los viajes en bicicleta que tanto en su inicio como su final son el mismo lugar (id), y que ademas deben ser mayores a 1200 segundos, y se contara cuantos hay de este tipo.
+
+//tripduration

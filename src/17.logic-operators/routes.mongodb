@@ -1,0 +1,24 @@
+use('sample_training')
+
+//Esta BD tiene varias rutaas de vuelos.
+// db.routes.find({ airplane: 'E70' }) //vuelos del avion E70
+
+//Voy a buscar los vuelos que hayan pasado por bogota.
+// db.routes.find({
+//     $or: [
+//         { src_airport: 'BOG' }, { dst_airport: 'BOG' },
+//     ]
+// }).count()
+
+//Voy a buscar los vuelos que hayan pasado por bogota, en los que hubiera pasado el avion E70
+//$and [{}, {}, {}]
+db.routes.find({
+    $and: [
+        { airplane: 'E70' }, //Debera cumplir con esta condicion obligatoriamente.
+        { $or: [
+            { src_airport: 'BOG' },
+            { dst_airport: 'BOG' },
+        ]
+        } //Podra cumplir una u otra condicion, pero no las dos obligatoriamente.
+    ] //Debera cumplir las dos condiciones obligatoriamente, la primera siempre sera igual, y la segunda se cumplira en la medida de que alguna de las dos internas se cumplan.
+})

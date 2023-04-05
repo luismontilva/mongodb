@@ -1,0 +1,16 @@
+//Para poder buscar documentos que tengan cierto patron de texto o cierta palabra, puedo usar regex. //regex es una expresion regular, por tanto se debe insertar como tal (/texto a buscar/).
+
+use('platzi_store')
+
+// db.inventory.find({ "item.description":{ $regex: /line/ }})
+
+// db.inventory.find({ "item.description":{ $regex: /LINE/i }})  //La i al final permitira que se hagan busquedas sin importar si se escribio en mayusculas o minusculas, es decir que no sea exigente en este aspecto.
+
+// db.inventory.find({ "item.description":{ $regex: /line$/i }}) //El $ permite definir el final del texto, por tanto puedo buscar solo los elementos cuya ultima palabra sea la que coloque antes del $.
+
+// db.inventory.find({ "item.description":{ $regex: /^single/i }}) //El ^ permite definir el inicio del texto, por tanto puedo buscar solo los elementos cuya primera palabra sea la que coloque despues del ^.
+
+
+//Cuando tenemos saltos de linea "\n", y yo quiero buscar texto inicial de algo que esta en la segunda linea.
+
+db.inventory.find({ "item.description":{ $regex: /^s/im }}) //m (multilines) permitira encontrar elementos por parrafos, tomando en cuenta los saltos de linea "\n". Para este caso, me traeria dos documentos, ya que un uno de ellos hay un salto de linea, y el parrafo que empieza despues empieza por s.

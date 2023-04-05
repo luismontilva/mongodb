@@ -1,0 +1,24 @@
+use('sample_airbnb')
+
+// De esta manera se puede hacer una busqueda con Mongo query Language
+
+// db.listingsAndReviews.find({
+//     amenities: 'Wifi'
+// }, {
+//     price: 1,
+//     amenities: 1
+// })
+
+//De esta manera se puede hacer con Aggregation Framework. 
+
+db.listingsAndReviews.aggregate([
+    { $match: {amenities: 'Wifi'}}, //find
+    { $project: { address: 1 } }, //project 
+    { $group: { _id: '$address.country', count: { $sum: 1 } } } //Puedo hacer agrupaciones. En este caso, tome las direcciones, traje las ubicaciones donde hay habitaciones con wifi, y ademas pido que cuente y sume 1 cada vez que vea un documento de este tipo, trayendome por pais cuantos casos de habitaciones por pais hay.
+]) 
+
+//Esto funciona por capas, y va a salir de uno pra entrar a otro, por tanto la informacion va a ir en orden de arrib a abajo.
+
+//Esta es la forma de hacer una busqueda desde el Aggregation Framework, todo quedaria en un solo array.
+
+//Aggregation Framework es INCREIBLE.

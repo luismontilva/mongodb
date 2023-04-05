@@ -1,0 +1,14 @@
+use('platzi_store')
+
+db.iot.updateMany(
+    //query
+    { sensor: 'A001' },
+    //update
+    {
+        $pull: {
+            readings: { $gte: 3 }
+        } //se van a eliminar elementos que sean mayores o iguales a 3 del array readings
+    }
+)
+
+//Aunque $gte es un operador usado para querys, tambien podemos usarlo para updates

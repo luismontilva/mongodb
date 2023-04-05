@@ -1,0 +1,39 @@
+// Se trabajar con loas arrays de inventory, los cuales son simplemente strings
+
+use('platzi_store')
+
+// OPERADOR $in. Yo puedo obtener elementos dentro de un array. Sirve para valores especificos, o arrays.
+
+// db.inventory.find({ qty: { $in: [20,25] } }) //Esta seria la manera de hacer un OR, que me traiga un valor u otro. [X,X]. Esto
+// db.inventory.find({ tags: { $in: ['book', 'electronics'] } }) //Esto traera los documentos que tengan book o electronics en tags, no que tengan los dos al mismo tiempo, sino que tengan al menos uno de los dos.
+
+//OPERADOR $nin. va a traer los documentos que no tengan esos valores que especifico. Sirve para valores especificos, o arrays.
+
+// db.inventory.find({ qty: { $nin: [20,25] } }) //Traera aquellos documentos que no tengan el 20, o el 25.
+// db.inventory.find({ tags: { $nin: ['book', 'electronics'] } }) //Traera aquellos documentos que no tengan book, o electronics.  
+
+//ARRAYS. operadores que solo sirven para arrays.
+
+// db.inventory.find({tags: ['school', 'book']}) //Esto solo me traeria aquellos documentos que tengan esos valores (En ese orden y posicion)
+
+// OPERADOR $all. Permitira hacer busquedas en arrays, sin tomar en cuenta el orden, pero si validando si tiene un elemento y otro.
+
+// db.inventory.find({ tags: { $all: ['book', 'school'] } }) //Devolvera documentos que tengan los elementos especificados (todos y no solo uno).
+
+//OPERADOR $size. Va a devolver los documentos, cuyo atributo (array) tenga la cantidad de elementos que especifico.
+
+// db.inventory.find({ tags: { $size: 2 } }) //traera los documentos con dos elementos en tags
+
+//OPERADOR $elemMatch. Permite trabajar con arrays que tienen objetos dentro.
+
+// db.survey.find({ results: { $elemMatch: { product: 'xyz' } } }) //Se debe acceder primero al primer array (atributo), luego con elemMatch es que se podra acceder a los atributos dentro de los objetos, y ahi especificare los valores buscados
+
+db.survey.find({
+    results: { //buscara en base al atributo results
+        $elemMatch: { //ingresamos en el aray de objetos
+            product: 'xyz', score: { $gte: 8 } //buscaremos en base a product xyz y un puntaje mayor o igual a 8
+        }
+    }
+}) //Para este caso buscare los elementos que tengan productos 'xyz' y que ademas tengan score mayor o igual (gte) a 8. Solo traera un documento.
+
+

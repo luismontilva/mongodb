@@ -1,0 +1,17 @@
+//Hay varias formas de eliminar documentos
+
+use('platzi_store')
+
+//Eliminar un solo elemento
+
+// db.products.deleteOne({ _id: 2})
+
+//Eliminar todos los elementos que coincidan con la consulta
+
+// db.products.deleteMany({
+//     price: 100
+// })
+
+//eliminar todos los elementos de una  coleccion
+
+db.products.drop()

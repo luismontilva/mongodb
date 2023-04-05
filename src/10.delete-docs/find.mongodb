@@ -1,0 +1,5 @@
+//hago el query de consulta
+
+use("platzi_store")
+
+db.products.find()

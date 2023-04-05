@@ -1,0 +1,8 @@
+use('platzi_store')
+
+db.categories
+.find()
+.skip(2) //Aqui definire cuantos elementos se va a saltar para luego ejecutar el limit, en este caso empezaria desde el 3er elemento (indice 2)
+.limit(2) //Se mostrara solo 2 elementos
+
+//Este es un buen metodo para las paginas web de buscadores, donde puedo partir en varios la informacion que se muestra, y las paginas siguientes serian los skips, omitiendo los elementos antes mostrados.

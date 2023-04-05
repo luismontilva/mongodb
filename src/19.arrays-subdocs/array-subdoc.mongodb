@@ -1,0 +1,24 @@
+use('sample_training')
+
+//De esta manera se accede a subdocumentos
+// db.trips.find({'start station location.type': 'Point'}) //De esta manera accedo a atributos (type) de un subdocumento (objetos dentro de start station location), para buscar aquellos que sean 'type'.
+
+//Buscaremos empresas (documentos), a partir del nombre de su CEO, el cual se encuentra en un subdocumento.
+// db.companies.find({
+//     'relationships.0.person.first_name': 'Mark' //Puedo ir a la posicion de un array al colocar el indice y luego los atributos o subdocumentos que sigan
+// }, {
+//     name: 1,
+//     _id: 0,
+//     relationships: 1
+// }).count() // Hay 108 CEO's que se llaman Mark
+
+//Buscaremos empresas (documentos), a partir de que el nombre de alguno de sus integrantes se llame Mark, el cual se encuentra en un subdocumento.
+db.companies.find({
+    relationships: {
+        $elemMatch: { 'person.first_name': 'Mark' }
+    }  //
+}, {
+    name: 1,
+    _id: 0,
+    relationships: 1
+}).count() // Hay 523 Empresas que tienen al menos a una persona que se llama Mark

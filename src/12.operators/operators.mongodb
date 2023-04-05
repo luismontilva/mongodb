@@ -1,0 +1,21 @@
+use('platzi_store')
+
+//Using $gt (>) & $gte (>=)
+
+// db.inventory.find({ qty: { $gt: 20 } }) //Me traera solo los documentos cuyas cantidades sean mayores a 20.
+// db.inventory.find({ qty: { $gte: 20 } }) //Me traera solo los documentos cuyas cantidades sean mayores o iguales a 20.
+
+//Using $lt (<) & $lte (<=)
+
+// db.inventory.find({ qty: { $lt: 20 } }) //Me traera solo los documentos cuyas cantidades sean menores a 20.
+// db.inventory.find({ qty: { $lte: 20 } }) //Me traera solo los documentos cuyas cantidades sean menores o iguales a 20.
+
+//Join. uedo combinar estos operadores para hacer busquedas mas detalladas
+
+// db.inventory.find({ qty: { $gte: 20, $lte: 25 } }) //Traera los documentos mayores e iguales a 20 y menores e iguales a 25
+
+//Puedo ahcer busquedas mas detalladas
+db.inventory.find({
+    'item.code': { $ne: '123'},
+    qty: { $gte: 20, $lte: 25 }
+}) //mostrara los elementos que sean mayores o iguales a 20, menores e iguales a 25, pero que ademas que el atributo 'code' del subdocumento item, no tenga el valor "123".

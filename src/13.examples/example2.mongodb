@@ -1,0 +1,14 @@
+findAll(params?: FilterProductDto) {
+    if (params) {
+      const filters: FilterQuery<Product> = {};
+      const { minPrice, maxPrice } = params;
+      if (minPrice && maxPrice) {
+        filters.price = { $gte: minPrice, $lte: maxPrice };
+      }
+      return this.productModel
+        .find(filters)
+    }
+    return this.productModel.find();
+  }
+
+  //Este es un ejemplo de una consulta en JS, en la cual traemos los productos que cumplan  con el rango de precio indicado en una query por un usuario.
